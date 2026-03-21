@@ -205,11 +205,24 @@ export default function Dashboard() {
               <div>
                 <div className="section-title">📹 Camera Live</div>
                 <div className="camera-feed">
-                  <div className="camera-label">Raspberry Pi Stream</div>
-                  <div className="camera-placeholder">
-                    <div className="cam-icon">📷</div>
-                    <p>Raspberry Pi Stream</p>
-                    <a href="http://raspberrypi.local:8080" target="_blank" rel="noreferrer">Kết nối Stream →</a>
+                  <div className="camera-label">Camera Logitech Stream</div>
+                  <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', backgroundColor: '#000', borderRadius: '4px', overflow: 'hidden' }}>
+                    {/* Thẻ img hiển thị MJPEG stream từ biến môi trường */}
+                    <img
+                      src={process.env.NEXT_PUBLIC_CAMERA_STREAM_URL || "http://localhost:5050/video_feed"}
+                      alt="Camera Stream"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        const fallback = e.target.nextElementSibling;
+                        if (fallback) fallback.style.display = 'flex';
+                      }}
+                    />
+                    <div className="camera-placeholder" style={{ display: 'none', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'var(--card-bg)', zIndex: 10 }}>
+                      <div className="cam-icon">⚠️</div>
+                      <p>Mất kết nối Camera</p>
+                      <span style={{ fontSize: '11px', color: 'gray', marginTop: '4px' }}>Camera Server chưa khởi chạy (Cổng 5050)</span>
+                    </div>
                   </div>
                 </div>
               </div>
