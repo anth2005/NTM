@@ -205,7 +205,7 @@ export default function Dashboard() {
               <div>
                 <div className="section-title">📹 Camera Live</div>
                 <div className="camera-feed">
-                  <div className="camera-label">Camera Logitech Stream</div>
+                  <div className="camera-label">ESP32-CAM Stream</div>
                   <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', backgroundColor: '#000', borderRadius: '4px', overflow: 'hidden' }}>
                     {/* Thẻ img hiển thị MJPEG stream từ biến môi trường */}
                     <img
@@ -221,7 +221,7 @@ export default function Dashboard() {
                     <div className="camera-placeholder" style={{ display: 'none', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'var(--card-bg)', zIndex: 10 }}>
                       <div className="cam-icon">⚠️</div>
                       <p>Mất kết nối Camera</p>
-                      <span style={{ fontSize: '11px', color: 'gray', marginTop: '4px' }}>Camera Server chưa khởi chạy (Cổng 5050)</span>
+                      <span style={{ fontSize: '11px', color: 'gray', marginTop: '4px' }}>Mạch ESP32-CAM chưa kết nối mạng hoặc sai IP</span>
                     </div>
                   </div>
                 </div>

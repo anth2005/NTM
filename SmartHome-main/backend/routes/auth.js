@@ -203,8 +203,14 @@ router.post('/oauth', async (req, res, next) => {
         email,
         password: require('crypto').randomBytes(32).toString('hex'), // Mật khẩu ngẫu nhiên
         role: 'user', // Mặc định role là user
-        isActive: true
+        isActive: true,
+        provider: provider // Lưu lại thông tin đăng nhập bằng gì (google, github)
       });
+    }
+
+    // Nếu người dùng đã tồn tại, ta cũng có thể cập nhật lại provider đăng nhập cuối cùng (nếu muốn)
+    if (nguoiDung.provider !== provider) {
+      nguoiDung.provider = provider;
     }
 
     // Cập nhật lastLogin
